@@ -1,0 +1,14 @@
+/*********************************************
+
+BASIC CSS FORMATTING
+
+**********************************************/
+
+body {
+  padding: 0;
+  margin-top: 5%;
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  background-color: rgb(9, 3, 15);
+}
