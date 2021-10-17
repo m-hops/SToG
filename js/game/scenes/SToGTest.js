@@ -4,10 +4,32 @@ class SToGTestScene extends Scene {
     super();
 
     this.cameraOBJ();
-    // this.staticOverlayOBJ();
-    // this.testSceneVisualOBJ();
     this.createUI();
+    this.createNewGame();
+    this.setRoom(this.gameState.currentRoom);
+  }
 
+  createNewGame() {
+
+    this.gameScript = new TextGameScript();
+    this.gameState = new TextGameState();
+
+    //TEST CODE: DELETE LATER AFTER JSON IMPLEMENTATION//
+    let debugRoom = new Room();
+    debugRoom.name = "debugRoom";
+
+    let exampleFridge = new Subject();
+    exampleFridge.name = "fridge";
+
+    let exampleReaction = new Reaction();
+    exampleReaction.verb = "inspect";
+
+    exampleFridge.addReaction(exampleReaction);
+    debugRoom.addSubject(exampleFridge);
+    this.gameScript.addRoom(debugRoom);
+    //
+
+    this.gameState.setCurrentRoom(this.gameScript.startRoom);
   }
 
   cameraOBJ() {
@@ -27,7 +49,15 @@ class SToGTestScene extends Scene {
     this.desktop = new WindowDesktop();
     this.desktop.getTransform().local.position.z = -1;
 
-    this.textInput = new TextFieldPrefab();
+    this.imgOBJ = new GameObject();
+
+    this.imgOBJ.addComponent(new Transform());
+    this.imgCOMP = new ImageComponent(debugMissingIMG);
+    this.imgOBJ.addComponent(this.imgCOMP);
+
+    this.addGameObject(this.imgOBJ);
+
+    this.textInput = new TextFieldPrefab(new CallbackAction2 (this, this.onKeyboardEnter));
 
     this.textInput.textField.color = 255;
     this.textInput.addComponent(new RectColliderComponent(AABB.MakeSize(100, 25)));
@@ -40,34 +70,42 @@ class SToGTestScene extends Scene {
     this.addGameObject(this.windowMag);
   }
 
-  staticOverlayOBJ() {
-    //FLAT DESKTOP OVERLAY//
+  setRoom(room) {
 
-    this.staticOverlay = new GameObject();
-    this.staticOverlay.addComponent(new Transform(0,0));
-    this.staticOverlay.addComponent(new ImageComponent(mainOverlayIMG));
+    this.imgCOMP.image = room.img;
 
-    this.staticOverlay.getTransform().local.position.z = 0;
+    console.log('setting room to ' + room.name);
 
-    this.staticOverlay.getTransform().local.setScale(0.5,0.5);
-
-    this.addGameObject(this.staticOverlay);
   }
 
-  testSceneVisualOBJ() {
-    //TEST IMAGE FOR SCENE//
+  onKeyboardEnter() {
+    let txt = this.textInput.value.toLowerCase();
+    let words = txt.split(" ");
 
-    this.testSceneOverlay = new GameObject();
-    this.testSceneOverlay.addComponent(new Transform(0,0));
-    this.testSceneOverlay.addComponent(new ImageComponent(testBedroomIMG));
+    console.log(words);
 
-    this.testSceneOverlay.getTransform().local.position.x = 50;
-    this.testSceneOverlay.getTransform().local.position.y = -100;
-    this.testSceneOverlay.getTransform().local.position.z = 30;
+    for (let i = 0; i < words.length; i++) {
 
-    this.testSceneOverlay.getTransform().local.setScale(0.9,0.9);
+      let subject = this.gameState.currentRoom.getSubjectByName(words[i]);
 
-    this.addGameObject(this.testSceneOverlay);
+      if (subject != null) {
+        console.log("subject = " + subject.name);
+
+        for (let h = 0; h < words.length; h++) {
+
+          let reaction = subject.getReaction(words[h]);
+
+          if (reaction != null) {
+
+            console.log("subject = " + subject.name + " verb = " + reaction.verb);
+          }
+        }
+      }
+    }
+
+    this.textInput.setText("");
+
+
   }
 
 }

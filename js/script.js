@@ -7,12 +7,12 @@ let gameState = new GameState();
 
 //SET CANVAS PROPERTY//
 let canvas = {
-  dimensionW:960,
-  dimensionH:540,
+  dimensionW:720,
+  dimensionH:720,
   color: {
-    r: 9,
-    g: 3,
-    b: 15
+    r: 0,
+    g: 0,
+    b: 0
   }
 }
 
@@ -21,6 +21,7 @@ let mainOverlayIMG;
 
 //TEMP VARIABLES//
 let testBedroomIMG;
+let debugMissingIMG;
 
 function preload() {
 
@@ -29,6 +30,7 @@ function preload() {
 
   //TEST PRELOADS//
   testBedroomIMG = loadImage('assets/images/testAssets/bedroom.jpg');
+  debugMissingIMG = loadImage('assets/images/testAssets/error.PNG');
 }
 
 //ACTIVATES MOUSE CLICK THROUGH ENGINE AND ISTATE//

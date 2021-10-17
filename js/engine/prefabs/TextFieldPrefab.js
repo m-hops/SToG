@@ -15,11 +15,19 @@ class TextFieldPrefab extends GameObject {
     this.inputRec.onKeyTypeEvent.addListener(new CallbackAction2(this,this.onKeyType));
     this.inputRec.onKeyPressEvent.addListener(new CallbackAction2(this,this.onKeyPress));
 
+    this.maxChar = 50;
+
     this.onEnterEvent = new Event();
 
     if (onEnterListener != null){
       this.onEnterEvent.addListener(onEnterListener);
     }
+  }
+
+  setText(txt) {
+
+      this.value = txt;
+      this.textField.text = txt;
   }
 
   onKeyPress(event, key) {
@@ -40,7 +48,7 @@ class TextFieldPrefab extends GameObject {
       return;
     }
 
-    if (this.value.length >= 9) {
+    if (this.value.length >= this.maxChar) {
       return;
     }
     this.value = this.value + key;
