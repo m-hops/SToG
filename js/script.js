@@ -7,8 +7,8 @@ let gameState = new GameState();
 
 //SET CANVAS PROPERTY//
 let canvas = {
-  dimensionW:720,
-  dimensionH:720,
+  dimensionW:512,
+  dimensionH:512,
   color: {
     r: 0,
     g: 0,
@@ -16,14 +16,21 @@ let canvas = {
   }
 }
 
+//FONT VARIABLES//
+let dosFont;
+
 //IMAGE VARIABLES//
 let mainOverlayIMG;
 
 //TEMP VARIABLES//
 let testBedroomIMG;
 let debugMissingIMG;
+let testMooseIMG;
 
 function preload() {
+
+  //FONT PRELOADS//
+  dosFont = loadFont('assets/font/Perfect DOS VGA 437 Win.ttf');
 
   //IMAGE PRELOADS//
   mainOverlayIMG = loadImage('assets/images/mainOverlay.png');
@@ -31,6 +38,7 @@ function preload() {
   //TEST PRELOADS//
   testBedroomIMG = loadImage('assets/images/testAssets/bedroom.jpg');
   debugMissingIMG = loadImage('assets/images/testAssets/error.PNG');
+  testMooseIMG = loadImage('assets/images/testAssets/testMoose.png');
 }
 
 //ACTIVATES MOUSE CLICK THROUGH ENGINE AND ISTATE//

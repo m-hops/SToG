@@ -11,6 +11,8 @@ class TextComponent extends RenderComponent{
     this.color = 0;
     this.textSize = 30;
     this.font = font;
+    this.textAlignH = LEFT;
+    this.textAlignW = TOP;
   }
 
   render(renderer) {
@@ -18,7 +20,7 @@ class TextComponent extends RenderComponent{
     fill(this.color);
     textSize(this.textSize);
     textFont(this.font);
-    textAlign(LEFT, TOP);
+    textAlign(this.textAlignH, this.textAlignW);
     text(this.text, 0, 0);
     pop();
   }
