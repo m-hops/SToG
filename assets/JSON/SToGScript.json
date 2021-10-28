@@ -1,0 +1,35 @@
+{
+    "roomName": "",
+    "img": "",
+    "description" :"",
+    "subjects" : [
+    {
+        "name": "",
+        "verbs": [
+        {
+            "name": "",
+            "actions": [
+            {
+                "type": "img",
+                "img": ""
+            },
+            {
+                "type": "==",
+                "variable": "myKey",
+                "value": "1"
+            },
+            {
+                "type": "inventorySet",
+                "variable": "myKey",
+                "value": "0"
+            },
+            {
+                "type": "goto",
+                "room": "bedroom"
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

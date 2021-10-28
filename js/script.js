@@ -22,6 +22,9 @@ let dosFont;
 //IMAGE VARIABLES//
 let mainOverlayIMG;
 
+//JSON VARIABLES//
+let stogScriptJSON;
+
 //TEMP VARIABLES//
 let testBedroomIMG;
 let debugMissingIMG;
@@ -31,6 +34,9 @@ function preload() {
 
   //FONT PRELOADS//
   dosFont = loadFont('assets/font/Perfect DOS VGA 437 Win.ttf');
+
+  //JSON PRELOADS//
+  stogScriptJSON = loadJSON('assets/JSON/SToGScript.json');
 
   //IMAGE PRELOADS//
   mainOverlayIMG = loadImage('assets/images/mainOverlay.png');
