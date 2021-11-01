@@ -11,7 +11,7 @@ class KeyboardComponent extends Component {
   onKeyPress(keyCode) {
     //if (keyCode != undefined) {
 
-      console.log("KeyboardComponent " + keyCode);
+      //console.log("KeyboardComponent " + keyCode);
       this.onKeyPressEvent.raise(keyCode);
 
     //}
@@ -19,7 +19,7 @@ class KeyboardComponent extends Component {
   onKeyType(key) {
     //if (keyCode != undefined) {
 
-      console.log("KeyboardComponent " + key);
+      //console.log("KeyboardComponent " + key);
       this.onKeyTypeEvent.raise(key);
 
     //}

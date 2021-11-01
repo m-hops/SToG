@@ -1,0 +1,21 @@
+{
+    "roomName": "zoo_fridge",
+    "img": "assets/images/testAssets/fridge.png",
+    "txt" :". . .",
+    "subjects" : [
+    {
+        "name": "fridge",
+        "verbs": [
+        {
+            "name": "close",
+            "actions": [
+            {
+                "type": "goto",
+                "room": "zoo"
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

@@ -3,19 +3,19 @@ class Subject {
   constructor() {
 
     this.name = "";
-    this.reactions = [];
+    this.verbs = [];
   }
 
-  addReaction(reaction) {
+  addVerb(verb) {
 
-    this.reactions.push(reaction);
+    this.verbs.push(verb);
   }
 
-  getReaction(verb) {
+  getVerb(name) {
 
-    for (let i = 0; i < this.reactions.length; i++) {
-      if (this.reactions[i].verb == verb) {
-        return this.reactions[i];
+    for (let i = 0; i < this.verbs.length; i++) {
+      if (this.verbs[i].name == name) {
+        return this.verbs[i];
       }
     }
 

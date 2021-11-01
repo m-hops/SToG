@@ -1,0 +1,21 @@
+{
+    "roomName": "zoo",
+    "img": "assets/images/testAssets/zoo.jpg",
+    "txt" :"In front of you are many things\nA fridge stands out.",
+    "subjects" : [
+    {
+        "name": "fridge",
+        "verbs": [
+        {
+            "name": "open",
+            "actions": [
+            {
+                "type": "goto",
+                "room": "zoo_fridge"
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

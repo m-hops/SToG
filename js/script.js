@@ -3,7 +3,8 @@
 //ENGINE SCENE SWITCHER//
 let rootStateMachine;
 let globalRenderer = new Renderer();
-let gameState = new GameState();
+let gameState = new TextGameState();
+let gameScript = new TextGameScript();
 
 //SET CANVAS PROPERTY//
 let canvas = {
@@ -25,6 +26,7 @@ let mainOverlayIMG;
 //JSON VARIABLES//
 let stogScriptJSON;
 
+
 //TEMP VARIABLES//
 let testBedroomIMG;
 let debugMissingIMG;
@@ -37,6 +39,7 @@ function preload() {
 
   //JSON PRELOADS//
   stogScriptJSON = loadJSON('assets/JSON/SToGScript.json');
+  gameScript.loadJSON('assets/JSON/zoo.json');
 
   //IMAGE PRELOADS//
   mainOverlayIMG = loadImage('assets/images/mainOverlay.png');
