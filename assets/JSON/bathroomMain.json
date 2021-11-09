@@ -1,0 +1,21 @@
+{
+    "roomName": "bathroomMain",
+    "img": "assets/images/bathroom/bathroom.png",
+    "txt" :"You have entered the bathroom",
+    "subjects" : [
+    {
+        "name": "door",
+        "verbs": [
+        {
+            "name": "open",
+            "actions": [
+            {
+                "type": "goto",
+                "room": "kitchenMainSouth"
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

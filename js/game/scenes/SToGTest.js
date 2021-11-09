@@ -14,66 +14,6 @@ class SToGTestScene extends Scene {
 
     this.gameScript = gameScript;//new TextGameScript();
     this.gameState = new TextGameState();
-    //
-    // //TEST CODE: DELETE LATER AFTER JSON IMPLEMENTATION//
-    // let debugRoom = new Room();
-    // debugRoom.name = "debugRoom";
-    // debugRoom.txt = "You're in the deubg room.\nThere is a door.\nAsshole."
-    // this.gameScript.addRoom(debugRoom);
-    //
-    // let exampleFridge = new Subject();
-    // exampleFridge.name = "gun";
-    // debugRoom.addSubject(exampleFridge);
-    //
-    // let exampleFridgeVerb = new Verb();
-    // exampleFridgeVerb.name = "want";
-    // exampleFridge.addVerb(exampleFridgeVerb);
-    //
-    // let exampleReaction = new Reaction();
-    // exampleReaction.type = "txt";
-    // exampleReaction.textToSet = "\nNot until you finish the game."
-    // exampleFridgeVerb.addReaction(exampleReaction);
-    //
-    //
-    //
-    // let exampleDoor = new Subject();
-    // exampleDoor.name = "door";
-    // debugRoom.addSubject(exampleDoor);
-    //
-    // let exampleDoorVerb = new Verb();
-    // exampleDoorVerb.name = "open";
-    // exampleDoor.addVerb(exampleDoorVerb);
-    //
-    // let exampleDoorReaction = new Reaction();
-    // exampleDoorReaction.type = "goto";
-    // exampleDoorReaction.roomToMoveTo = "mooseRoom";
-    // exampleDoorVerb.addReaction(exampleDoorReaction);
-    //
-    // //
-    //
-    // let roomWithMoose = new Room();
-    // roomWithMoose.name = "mooseRoom"
-    // roomWithMoose.txt = "You're in a room,\nWITH A MOOSE!"
-    // roomWithMoose.img = testMooseIMG;
-    // this.gameScript.addRoom(roomWithMoose);
-    //
-    // let mooseSubject = new Subject();
-    // mooseSubject.name = "moose";
-    // roomWithMoose.addSubject(mooseSubject);
-    //
-    // let mooseVerb = new Verb();
-    // mooseVerb.name = "touch";
-    // mooseSubject.addVerb(mooseVerb);
-    //
-    // let mooseReaction = new Reaction();
-    // mooseReaction.type = "txt";
-    // mooseReaction.textToSet = "Why the fuck did you\nTOUCH THE MOOSE?!"
-    // mooseVerb.addReaction(mooseReaction);
-
-    //
-
-    //this.gameState.setCurrentRoom(this.gameScript.startRoom);
-    //this.setRoom(this.gameScript.startRoom);
   }
 
   cameraOBJ() {

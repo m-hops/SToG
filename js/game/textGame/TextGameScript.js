@@ -30,6 +30,7 @@ class TextGameScript {
   loadJSON(path){
     var data = loadJSON(path, this.onJSONLoaded.bind(this));
   }
+
   onJSONLoaded(data){
     var room = new Room();
     room.name = data.roomName.toLowerCase();
@@ -67,16 +68,25 @@ class TextGameScript {
     reaction.loadJSON(data, this);
     return reaction;
   }
+
   loadImage(img){
     if(img == undefined || img == ''){
       console.log("'img' must be set to the image file");
     }
     return loadImage(img);
   }
+
   loadRoom(name){
     if(this.getRoom(name) == null){
      this.loadJSON('assets/JSON/' + name + '.json');
     }
     return name;
+  }
+
+  loadSFX(sfx){
+    if(sfx == undefined || sfx == ''){
+      console.log("'sfx' must be set to the sfx file");
+    }
+    return loadSound(sfx);
   }
 }

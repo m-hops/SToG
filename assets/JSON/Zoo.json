@@ -1,21 +1,32 @@
 {
-    "roomName": "zoo",
-    "img": "assets/images/testAssets/zoo.jpg",
-    "txt" :"In front of you are many things\nA fridge stands out.",
-    "subjects" : [
-    {
-        "name": "fridge",
-        "verbs": [
-        {
-            "name": "open",
-            "actions": [
-            {
-                "type": "goto",
-                "room": "zoo_fridge"
-            }
-            ]
-        }
-        ]
-    }
-    ]
+  "roomName": "zoo",
+  "img": "assets/images/testAssets/zoo.jpg",
+  "txt": "In front of you are many things\nA fridge stands out.",
+  "subjects": [{
+
+    "name": "fridge",
+    "verbs": [{
+      "name": "open",
+      "actions": [{
+
+        "type": "!=",
+        "var": "yellow_key",
+        "value": "1",
+        "then": [{
+            "type": "set",
+            "var": "yellow_key",
+            "value": "1"
+          },
+          {
+            "type": "goto",
+            "room": "zoo_fridge"
+          }
+        ],
+        "else": [{
+          "type": "goto",
+          "room": "death"
+        }]
+      }, ]
+    }]
+  }]
 }

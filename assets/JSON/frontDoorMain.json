@@ -1,0 +1,21 @@
+{
+    "roomName": "frontDoorMain",
+    "img": "assets/images/frontDoor/entrance.png",
+    "txt" :"The door to leave stands in front of you.",
+    "subjects" : [
+    {
+        "name": "around",
+        "verbs": [
+        {
+            "name": "turn",
+            "actions": [
+            {
+                "type": "goto",
+                "room": "kitchenMainSouth"
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

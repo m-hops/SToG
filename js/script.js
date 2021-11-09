@@ -23,9 +23,6 @@ let dosFont;
 //IMAGE VARIABLES//
 let mainOverlayIMG;
 
-//JSON VARIABLES//
-let stogScriptJSON;
-
 
 //TEMP VARIABLES//
 let testBedroomIMG;
@@ -38,8 +35,8 @@ function preload() {
   dosFont = loadFont('assets/font/Perfect DOS VGA 437 Win.ttf');
 
   //JSON PRELOADS//
-  stogScriptJSON = loadJSON('assets/JSON/SToGScript.json');
-  gameScript.loadJSON('assets/JSON/zoo.json');
+  //JSON PRELOADS ARE HANDLED THROUGH GAMESCRIPT; NO NEED TO ADD HERE EXCEPT INITIAL LOCATION//
+  gameScript.loadJSON('assets/JSON/bedroomMain.json');
 
   //IMAGE PRELOADS//
   mainOverlayIMG = loadImage('assets/images/mainOverlay.png');

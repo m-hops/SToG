@@ -1,0 +1,26 @@
+{
+  "roomName": "kitchenMainSouth",
+  "img": "assets/images/kitchen/south/kitchen_s.png",
+  "txt": "You observe the south section of the kitchen",
+  "subjects": [{
+      "name": "around",
+      "verbs": [{
+        "name": "turn",
+        "actions": [{
+          "type": "goto",
+          "room": "kitchenMainNorth"
+        }]
+      }]
+    },
+    {
+      "name": "door",
+      "verbs": [{
+        "name": "open",
+        "actions": [{
+          "type": "goto",
+          "room": "bathroomMain"
+        }]
+      }]
+    }
+  ]
+}

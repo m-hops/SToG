@@ -1,0 +1,24 @@
+{
+  "roomName": "bedroomMain",
+  "img": "assets/images/bedroom/bedroom.png",
+  "txt": "You have entered the bedroom",
+  "subjects": [{
+
+    "name": "door",
+    "verbs": [{
+
+      "name": "open",
+      "actions":[
+        {"type":"sfx", "sfx":"assets/sound/sfx/blip.mp3"},
+        {"type":"!=", "var":"testKey", "value":"1",
+          "then":[
+            {"type":"set", "var":"testKey", "value":"1"},
+            {"type":"txt", "txt":"You now have key."}
+          ],"else":[
+            {"type":"goto", "room":"kitchenMainNorth"}
+          ]
+        }
+      ]
+    }]
+  }]
+}
