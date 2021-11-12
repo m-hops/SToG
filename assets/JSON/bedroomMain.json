@@ -1,7 +1,7 @@
 {
   "roomName": "bedroomMain",
   "img": "assets/images/bedroom/bedroom.png",
-  "txt": "You have entered the bedroom",
+  "txt": "You have entered the bedroom.\nThe only thing here right now is a door\nand a bed.",
   "subjects": [{
 
     "name": "door",
@@ -9,16 +9,18 @@
 
       "name": "open",
       "actions":[
-        {"type":"sfx", "sfx":"assets/sound/sfx/blip.mp3"},
-        {"type":"!=", "var":"testKey", "value":"1",
-          "then":[
-            {"type":"set", "var":"testKey", "value":"1"},
-            {"type":"txt", "txt":"You now have key."}
-          ],"else":[
-            {"type":"goto", "room":"kitchenMainNorth"}
-          ]
-        }
+        {"type":"goto", "room":"kitchenMainNorth"}
       ]
+    }]
+  },
+  {
+    "name": "bed",
+    "verbs": [{
+      "name": "touch",
+      "actions": [{
+        "type": "txt",
+        "txt": "You remember that you and the bed are\nhaving an argument on global politics so\ndecide to leave it alone."
+      }]
     }]
   }]
 }

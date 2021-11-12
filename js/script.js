@@ -22,7 +22,7 @@ let dosFont;
 
 //IMAGE VARIABLES//
 let mainOverlayIMG;
-
+let helpOverlayIMG;
 
 //TEMP VARIABLES//
 let testBedroomIMG;
@@ -40,6 +40,7 @@ function preload() {
 
   //IMAGE PRELOADS//
   mainOverlayIMG = loadImage('assets/images/mainOverlay.png');
+  helpOverlayIMG = loadImage('assets/images/help/help.png');
 
   //TEST PRELOADS//
   testBedroomIMG = loadImage('assets/images/testAssets/bedroom.jpg');

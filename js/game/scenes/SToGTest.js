@@ -107,9 +107,13 @@ class SToGTestScene extends Scene {
 
   onKeyboardEnter() {
     let txt = this.textInput.value.toLowerCase();
-    if(txt == ''){
+    if(txt == '' || txt == "return"){
       this.setText(this.gameState.currentRoom.txt);
-    } else {
+      this.setImage(this.gameState.currentRoom.img);
+    } else if (txt == 'help') {
+      this.setImage(helpOverlayIMG);
+      this.setText("Verbs.\nUse them!");
+    }else {
       let words = txt.split(" ");
 
       console.log(words);

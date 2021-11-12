@@ -1,7 +1,7 @@
 {
     "roomName": "frontDoorMain",
     "img": "assets/images/frontDoor/entrance.png",
-    "txt" :"The door to leave stands in front of you.",
+    "txt" :"The door to leave stands in front of you\n and behind you is your kitchen table.",
     "subjects" : [
     {
         "name": "around",
@@ -13,6 +13,19 @@
                 "type": "goto",
                 "room": "kitchenMainSouth"
             }
+            ]
+        }
+        ]
+    },
+    {
+        "name": "door",
+        "verbs": [
+        {
+            "name": "open",
+            "actions": [
+            {"type":"img", "img":"assets/images/frontDoor/hallwayLong.png"},
+            {"type":"txt", "txt":"Ha ha ha!\nSYKE!"},
+            {"type":"sfx", "sfx":"assets/sound/sfx/leaveError.mp3"}
             ]
         }
         ]

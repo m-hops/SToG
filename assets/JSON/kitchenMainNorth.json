@@ -1,7 +1,7 @@
 {
   "roomName": "kitchenMainNorth",
   "img": "assets/images/kitchen/north/kitchen_n.png",
-  "txt": "You observe the north section of the kitchen",
+  "txt": "You enter the kitchen and see a fridge,\nthe bedroom door, and behind you lies what\ncould arguably be called a table.",
   "subjects": [{
       "name": "around",
       "verbs": [{
@@ -19,6 +19,16 @@
         "actions": [{
           "type": "goto",
           "room": "bedroomMain"
+        }]
+      }]
+    },
+    {
+      "name": "fridge",
+      "verbs": [{
+        "name": "touch",
+        "actions": [{
+          "type": "txt",
+          "txt": "I really need to come up with a\nbetter keyword than touch because let's be\nhonest, it's uncomfortable. For all of us."
         }]
       }]
     }

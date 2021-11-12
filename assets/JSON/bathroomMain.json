@@ -1,7 +1,7 @@
 {
     "roomName": "bathroomMain",
     "img": "assets/images/bathroom/bathroom.png",
-    "txt" :"You have entered the bathroom",
+    "txt" :"It's the bathroom.\nInside is a tub, a toilet, and\nthe door out.",
     "subjects" : [
     {
         "name": "door",
@@ -12,6 +12,42 @@
             {
                 "type": "goto",
                 "room": "kitchenMainSouth"
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "name": "tub",
+        "verbs": [
+        {
+            "name": "touch",
+            "actions": [
+            {
+                "type": "txt",
+                "txt": "Feelig the grime beneath your fingers,\nyou're reminded of just how much you've\nstopped caring for your things."
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "name": "toilet",
+        "verbs": [
+        {
+            "name": "touch",
+            "actions": [
+            {
+                "type": "!=",
+                "var": "goPee",
+                "value": "1",
+                "then":[
+                  {"type":"set", "var":"goPee","value":"1"},
+                  {"type":"sfx", "sfx":"assets/sound/sfx/flush.mp3"},
+                  {"type":"txt", "txt":"Ahhh....\nBetter."}
+                ],"else":[
+                  {"type":"txt", "txt":"You uhh... what? No.\nYou just went!"}
+                ]
             }
             ]
         }

@@ -1,14 +1,14 @@
 {
   "roomName": "kitchenMainSouth",
   "img": "assets/images/kitchen/south/kitchen_s.png",
-  "txt": "You observe the south section of the kitchen",
+  "txt": "Before you is a `table`, a hallway,\nand the bedroom door.\nBehind you is the kitchen.",
   "subjects": [{
-      "name": "around",
+      "name": "hallway",
       "verbs": [{
-        "name": "turn",
+        "name": "enter",
         "actions": [{
           "type": "goto",
-          "room": "kitchenMainNorth"
+          "room": "frontDoorMain"
         }]
       }]
     },
@@ -19,6 +19,26 @@
         "actions": [{
           "type": "goto",
           "room": "bathroomMain"
+        }]
+      }]
+    },
+    {
+      "name": "table",
+      "verbs": [{
+        "name": "touch",
+        "actions": [{
+          "type": "txt",
+          "txt": "You touch the table. It blushes.\nCould this be the start of something\nbeautiful?"
+        }]
+      }]
+    },
+    {
+      "name": "around",
+      "verbs": [{
+        "name": "turn",
+        "actions": [{
+          "type": "goto",
+          "room": "kitchenMainNorth"
         }]
       }]
     }
