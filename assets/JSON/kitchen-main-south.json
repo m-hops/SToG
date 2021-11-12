@@ -1,5 +1,5 @@
 {
-  "roomName": "kitchenMainSouth",
+  "roomName": "kitchen-main-south",
   "img": "assets/images/kitchen/south/kitchen_s.png",
   "txt": "Before you is a `table`, a hallway,\nand the bedroom door.\nBehind you is the kitchen.",
   "subjects": [{
@@ -8,7 +8,7 @@
         "name": "enter",
         "actions": [{
           "type": "goto",
-          "room": "frontDoorMain"
+          "room": "front-door-main"
         }]
       }]
     },
@@ -18,7 +18,7 @@
         "name": "open",
         "actions": [{
           "type": "goto",
-          "room": "bathroomMain"
+          "room": "bathroom-main"
         }]
       }]
     },
@@ -38,7 +38,7 @@
         "name": "turn",
         "actions": [{
           "type": "goto",
-          "room": "kitchenMainNorth"
+          "room": "kitchen-main-north"
         }]
       }]
     }

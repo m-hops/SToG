@@ -1,5 +1,5 @@
 {
-    "roomName": "bathroomMain",
+    "roomName": "bathroom-main",
     "img": "assets/images/bathroom/bathroom.png",
     "txt" :"It's the bathroom.\nInside is a tub, a toilet, and\nthe door out.",
     "subjects" : [
@@ -11,7 +11,7 @@
             "actions": [
             {
                 "type": "goto",
-                "room": "kitchenMainSouth"
+                "room": "kitchen-main-south"
             }
             ]
         }

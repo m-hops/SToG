@@ -1,5 +1,5 @@
 {
-    "roomName": "frontDoorMain",
+    "roomName": "front-door-main",
     "img": "assets/images/frontDoor/entrance.png",
     "txt" :"The door to leave stands in front of you\n and behind you is your kitchen table.",
     "subjects" : [
@@ -11,7 +11,7 @@
             "actions": [
             {
                 "type": "goto",
-                "room": "kitchenMainSouth"
+                "room": "kitchen-main-south"
             }
             ]
         }

@@ -1,5 +1,5 @@
 {
-  "roomName": "bedroomMain",
+  "roomName": "bedroom-main",
   "img": "assets/images/bedroom/bedroom.png",
   "txt": "You have entered the bedroom.\nThe only thing here right now is a door\nand a bed.",
   "subjects": [{
@@ -9,7 +9,7 @@
 
       "name": "open",
       "actions":[
-        {"type":"goto", "room":"kitchenMainNorth"}
+        {"type":"goto", "room":"kitchen-main-north"}
       ]
     }]
   },

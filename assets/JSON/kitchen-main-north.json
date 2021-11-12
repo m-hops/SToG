@@ -1,5 +1,5 @@
 {
-  "roomName": "kitchenMainNorth",
+  "roomName": "kitchen-main-north",
   "img": "assets/images/kitchen/north/kitchen_n.png",
   "txt": "You enter the kitchen and see a fridge,\nthe bedroom door, and behind you lies what\ncould arguably be called a table.",
   "subjects": [{
@@ -8,7 +8,7 @@
         "name": "turn",
         "actions": [{
           "type": "goto",
-          "room": "kitchenMainSouth"
+          "room": "kitchen-main-south"
         }]
       }]
     },
@@ -18,7 +18,7 @@
         "name": "open",
         "actions": [{
           "type": "goto",
-          "room": "bedroomMain"
+          "room": "bedroom-main"
         }]
       }]
     },
