@@ -1,29 +1,23 @@
 class TextGameScript {
-
   constructor() {
-
     this.rooms = [];
     this.startRoom = null;
+    this.roomRefToFix = [];
   }
 
   addRoom(room) {
-
     this.rooms.push(room);
-
     if (this.startRoom == null) {
       this.startRoom = room;
     }
   }
 
   getRoom(roomName) {
-
     for (let i = 0; i < this.rooms.length; i++) {
-
       if (this.rooms[i].name == roomName) {
         return this.rooms[i];
       }
     }
-
     return null;
   }
 
@@ -32,23 +26,30 @@ class TextGameScript {
   }
 
   onJSONLoaded(data){
-    var room = new Room();
-    room.name = data.roomName.toLowerCase();
-    room.img = loadImage(data.img);
-    room.txt = data.txt;
-    this.addRoom(room);
-    console.log('loading room:');
-    console.log(data);
-    for(let i = 0; i != data.subjects.length; ++i){
-      room.addSubject(this.loadJSONSubject(data.subjects[i]));
+    for(let iRoom = 0; iRoom != data.length; ++iRoom){
+      var room = new Room();
+      room.name = data[iRoom].name.toLowerCase();
+      room.img = loadImage(data[iRoom].img);
+      room.txt = data[iRoom].txt;
+      this.addRoom(room);
+      console.log('loading room:"' + room.name + '"');
+      for(let i = 0; i != data[iRoom].subjects.length; ++i){
+        room.addSubject(this.loadJSONSubject(data[iRoom].subjects[i]));
+      }
+      console.log(data[iRoom]);
     }
-    //room.name = data.subjects;
+    for(let i = 0; i != this.roomRefToFix.length; ++i){
+      var r = this.getRoom(this.roomRefToFix[i].room);
+      if(r == null){
+        console.log("[ERROR] Room not found \"" + this.roomRefToFix[i].room + "\"");
+      }
+    }
+    this.roomRefToFix = [];
   }
 
   loadJSONSubject(data){
     var subject = new Subject();
     subject.name = data.name.toLowerCase();
-
     for(let i = 0; i != data.verbs.length; ++i){
       subject.addVerb(this.loadJSONVerb(data.verbs[i]));
     }
@@ -58,15 +59,19 @@ class TextGameScript {
   loadJSONVerb(data){
     var verb = new Verb();
     verb.name = data.name.toLowerCase();
-    for(let i = 0; i != data.actions.length; ++i){
-      verb.addReaction(this.loadJSONReaction(data.actions[i]));
+    for(let i = 0; i != data.reactions.length; ++i){
+      verb.addReaction(this.loadJSONReaction(data.reactions[i]));
     }
     return verb;
   }
+
   loadJSONReaction(data){
-    var reaction = new Reaction();
-    reaction.loadJSON(data, this);
-    return reaction;
+    let r = loadReactionFromJSON(data, this);
+    // if(r != null){
+    //   let str = r.print("|");
+    //   console.log("loadJSONReaction:\n" + str);
+    // }
+    return r;
   }
 
   loadImage(img){
@@ -76,9 +81,9 @@ class TextGameScript {
     return loadImage(img);
   }
 
-  loadRoom(name){
-    if(this.getRoom(name) == null){
-     this.loadJSON('assets/JSON/' + name + '.json');
+  loadRoom(name, ref = null){
+    if(ref != null){
+        this.roomRefToFix.push(ref);
     }
     return name;
   }
