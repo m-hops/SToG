@@ -36,7 +36,8 @@ function preload() {
 
   //JSON PRELOADS//
   //JSON PRELOADS ARE HANDLED THROUGH GAMESCRIPT; NO NEED TO ADD HERE EXCEPT INITIAL LOCATION//
-  gameScript.loadJSON('assets/JSON/bedroom-main.json');
+  //gameScript.loadJSON('assets/JSON/bedroom-main.json');
+  gameScript.loadJSON('assets/rooms.json');
 
   //IMAGE PRELOADS//
   mainOverlayIMG = loadImage('assets/images/mainOverlay.png');
