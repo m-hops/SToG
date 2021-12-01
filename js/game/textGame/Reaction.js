@@ -35,7 +35,7 @@ class ReactionError extends Reaction{
     console.log("[ERROR] " + this.txt);
     return true;
   }
-  
+
   print(indent){
       return indent + "ReactionError(\""+this.type+"\", \""+this.txt+"\")";
   }
