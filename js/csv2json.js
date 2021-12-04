@@ -2,6 +2,11 @@
 
 let cvsData;
 let inputFile = 'assets/rooms.csv';
+let colRoom = 0;
+let colItem = 1;
+let colSubject = 2;
+let colVerb = 3;
+let colReaction = 4;
 
 class SToGRoomCSVImporter{
   constructor(fileIn){
@@ -14,8 +19,12 @@ class SToGRoomCSVImporter{
     loadStrings(inputFile, this.onCSVFileLoaded.bind(this), this.onCSVFileError.bind(this));
   }
 
-  logInfo(str){
-    console.log(str);
+  logInfo(str, rowIndex){
+    if(rowIndex !== undefined){
+      console.log("ERROR:["+ (rowIndex+1) + "] " + str);
+    } else {
+      console.log(str);
+    }
   }
 
   logError(str, rowIndex){
@@ -151,16 +160,17 @@ class SToGRoomCSVImporter{
   }
 
   processRow(rowIndex){
-    if(this.rows[rowIndex].length > 0 && this.rows[rowIndex][0] != "") return this.processRowRoom(this.rows[rowIndex], rowIndex);
-    if(this.rows[rowIndex].length > 1 && this.rows[rowIndex][1] != "") return this.processRowSubject(this.rows[rowIndex], rowIndex);
-    if(this.rows[rowIndex].length > 2 && this.rows[rowIndex][2] != "") return this.processRowVerb(this.rows[rowIndex], rowIndex);
-    if(this.rows[rowIndex].length > 3) return this.processRowReaction(this.rows[rowIndex], rowIndex, 3);
+    if(this.rows[rowIndex].length > colRoom && this.rows[rowIndex][colRoom] != "") return this.processRowRoom(this.rows[rowIndex], rowIndex);
+    if(this.rows[rowIndex].length > colItem && this.rows[rowIndex][colItem] != "") return this.processRowItem(this.rows[rowIndex], rowIndex);
+    if(this.rows[rowIndex].length > colSubject && this.rows[rowIndex][colSubject] != "") return this.processRowSubject(this.rows[rowIndex], rowIndex);
+    if(this.rows[rowIndex].length > colVerb && this.rows[rowIndex][colVerb] != "") return this.processRowVerb(this.rows[rowIndex], rowIndex);
+    if(this.rows[rowIndex].length > colReaction) return this.processRowReaction(this.rows[rowIndex], rowIndex, 3);
     this.logInfo("Row " + (rowIndex+1) + " ignored: " + this.lines[rowIndex]);
     return rowIndex+1;
   }
 
   processRowRoom(values, rowIndex){
-    let room = new Room(values[0], values[1], values[2]);
+    let room = new Room(values[colRoom], values[colRoom+2], values[colRoom+3]);
     this.logInfo("Creating new room name:" + room.name + " img:" + room.img + " txt:" + room.txt);
     this.rooms.push(room);
     this.currentRoom = room;
@@ -169,8 +179,46 @@ class SToGRoomCSVImporter{
     return rowIndex+1;
   }
 
+  processRowItem(values, rowIndex){
+    switch(values[colItem]){
+      case "subject":
+      case "":
+        return this.processRowSubject(values, rowIndex);
+      case "obj":
+        return this.processRowObject(rowIndex, colItem);
+    }
+    this.logInfo("Ignoring item row", rowIndex);
+    return rowIndex+1;
+  }
+
+  processRowObject(rowIndex, col){
+    this.logInfo("Begin Object", rowIndex);
+    let curRow = rowIndex;
+    let objName = this.rows[curRow][col+1];
+    while(curRow < this.rows.length){
+      switch(this.rows[curRow][col].toLowerCase()){
+        case "endobj":
+        case "end obj":
+          this.logInfo("End Object", rowIndex);
+          return curRow + 1;
+        default:
+          curRow = this.processObjectScope(curRow, col);
+          break;
+      }
+    }
+    return curRow;
+  }
+
+  processObjectScope(rowIndex, col){
+    let curRow = rowIndex;
+    switch(this.rows[curRow][col].toLowerCase()){
+      default:
+        return curRow + 1;
+    }
+  }
+
   processRowSubject(values, rowIndex){
-    let subject = new Subject(values[1]);
+    let subject = new Subject(values[colSubject]);
     this.logInfo("Creating new subject name:" + subject.name);
     if(this.currentRoom != null) {
       this.currentRoom.subjects.push(subject);
@@ -182,7 +230,7 @@ class SToGRoomCSVImporter{
   }
 
   processRowVerb(values, rowIndex){
-    let verb = new Verb(values[2]);
+    let verb = new Verb(values[colVerb]);
     this.logInfo("Creating new verb name:" + verb.name);
     if(this.currentSubject != null) {
       this.currentSubject.verbs.push(verb);
@@ -192,7 +240,7 @@ class SToGRoomCSVImporter{
     return rowIndex+1;
   }
 
-  processRowReaction(values, rowIndex, col=3){
+  processRowReaction(values, rowIndex, col=colReaction){
     let r = this.processReaction(values, rowIndex, col);
     if(r.reaction != null){
       if(this.currentVerb != null) {
@@ -215,16 +263,28 @@ class SToGRoomCSVImporter{
     return defaultValue;
   }
 
+  isRowReaction(rowIndex){
+    return this.rows[rowIndex][0] == "" ||
+       this.rows[rowIndex][1] == "" ||
+       this.rows[rowIndex][2] == "" ||
+       this.rows[rowIndex][3] == "";
+  }
+  processCondition(rowIndex, col){
+    let condition = new TGCondition(this.rows[rowIndex][col], this.rows[rowIndex][col+1], this.rows[rowIndex][col+2]);
+    return {condition, rowIndex};
+  }
   processReactionIf(values, rowIndex, col){
-    let reaction = new ReactionIf(this.valueOrNull(values,col+1), this.valueOrNull(values,col+2), this.valueOrNull(values,col+3));
-    this.logInfo("Creating ReactionIf(" + reaction.lhs + ", " + reaction.op + ", " + reaction.rhs + ")");
+    let cr = this.processCondition(rowIndex, col+1);
+    rowIndex = cr.rowIndex;
+    let reaction = new ReactionIf(cr.condition);
+    this.logInfo("Creating ReactionIf(" + reaction.condition.print() + ")");
     let scopeEnd = false;
     let scopeReactions = reaction.then;
     let scopeIf = reaction;
     ++rowIndex;
     while(rowIndex < this.rows.length && !scopeEnd){
       // if row has anything in col 0,1 or 2, not reaction rows, exit out.
-      if(this.rows[rowIndex][0] != "" || this.rows[rowIndex][1] != "" || this.rows[rowIndex][2] != "")
+      if(!this.isRowReaction(rowIndex))
         break;
       let scopeCmd = this.rows[rowIndex][col];
       switch(scopeCmd){
@@ -271,7 +331,7 @@ class SToGRoomCSVImporter{
     ++rowIndex;
     while(rowIndex < this.rows.length && !scopeEnd){
       // if row has anything in col 0,1 or 2, not reaction rows, exit out.
-      if(this.rows[rowIndex][0] != "" || this.rows[rowIndex][1] != "" || this.rows[rowIndex][2] != "")
+      if(!this.isRowReaction(rowIndex))
         break;
       let scopeCmd = this.rows[rowIndex][col];
       switch(scopeCmd){
@@ -286,7 +346,7 @@ class SToGRoomCSVImporter{
         case "endtimer":
           scopeEnd = true;
           ++rowIndex;
-          break;
+          return {reaction, rowIndex};
         default:
           this.logError("Unkown command while parsing timer", rowIndex);
           ++rowIndex;
