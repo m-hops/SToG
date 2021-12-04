@@ -113,6 +113,14 @@ class SToGTestScene extends Scene {
     } else if (txt == 'help') {
       this.setImage(helpOverlayIMG);
       this.setText("Verbs.\nUse them!");
+    } else if (txt == 'map') {
+      let roomMap = this.gameState.getRoom("map");
+      if(roomMap != null){
+        this.setRoom(roomMap);
+      }
+      else {
+        console.log("Error, map room not found");
+      }
     }else {
       let words = txt.split(" ");
 
