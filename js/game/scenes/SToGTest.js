@@ -159,4 +159,8 @@ class SToGTestScene extends Scene {
       this.roomImgCOMP.image = img;
   }
 
+  update() {
+    super.update();
+    this.gameState.stepTimers(deltaTime, this);
+  }
 }

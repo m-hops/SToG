@@ -7,8 +7,21 @@ class TextGameState extends GameState{
     this.variables = [];
     this.currentMusicName = null;
     this.currentMusic = null;
+    this.runningTimer = [];
   }
 
+  stepTimers(deltaTime, target){
+    for(let i = 0; i != this.runningTimer.length;){
+      if(!this.runningTimer[i].step(deltaTime, target)){
+        this.runningTimer.splice(i, 1);
+      } else {
+        ++i;
+      }
+    }
+  }
+  addTimer(timer){
+    this.runningTimer.push(timer);
+  }
   startMusic(name, sound) {
 
     this.stopMusic();

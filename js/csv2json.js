@@ -15,7 +15,7 @@ class SToGRoomCSVImporter{
   }
 
   logInfo(str){
-    //console.log(str);
+    console.log(str);
   }
 
   logError(str, rowIndex){
@@ -194,16 +194,25 @@ class SToGRoomCSVImporter{
 
   processRowReaction(values, rowIndex, col=3){
     let r = this.processReaction(values, rowIndex, col);
-    if(this.currentVerb != null) {
-      this.currentVerb.reactions.push(r.reaction);
-    } else
-      this.logError("No verb declared while parsing reaction.", rowIndex);
+    if(r.reaction != null){
+      if(this.currentVerb != null) {
+        this.currentVerb.reactions.push(r.reaction);
+      } else
+        this.logError("No verb declared while parsing reaction.", rowIndex);
+    } else{
+      this.logInfo("Empty line.", rowIndex);
+    }
     return r.rowIndex;
   }
 
   valueOrNull(array, index){
     if(index < array.length) return array[index];
     return null;
+  }
+
+  valueOr(array, index, defaultValue){
+    if(index < array.length) return array[index];
+    return defaultValue;
   }
 
   processReactionIf(values, rowIndex, col){
@@ -253,9 +262,47 @@ class SToGRoomCSVImporter{
     return {reaction, rowIndex};
   }
 
+  processReactionTimer(values, rowIndex, col){
+    let reaction = new ReactionTimer(this.valueOrNull(values,col+1), this.valueOr(values,col+2, 1));
+    this.logInfo("Creating ReactionTimer(" + reaction.time + ", " + reaction.repeat + ")");
+    let scopeEnd = false;
+    let scopeReactions = reaction.reactions;
+    let scopeIf = reaction;
+    ++rowIndex;
+    while(rowIndex < this.rows.length && !scopeEnd){
+      // if row has anything in col 0,1 or 2, not reaction rows, exit out.
+      if(this.rows[rowIndex][0] != "" || this.rows[rowIndex][1] != "" || this.rows[rowIndex][2] != "")
+        break;
+      let scopeCmd = this.rows[rowIndex][col];
+      switch(scopeCmd){
+        case "":
+          let r = this.processReaction(this.rows[rowIndex], rowIndex, col+1);
+          rowIndex = r.rowIndex;
+          if(r.reaction != null){
+            scopeReactions.push(r.reaction);
+          }
+          break;
+        case "end timer":
+        case "endtimer":
+          scopeEnd = true;
+          ++rowIndex;
+          break;
+        default:
+          this.logError("Unkown command while parsing timer", rowIndex);
+          ++rowIndex;
+          break;
+      }
+    }
+    return {reaction, rowIndex};
+  }
+
   processReaction(values, rowIndex, col=3){
     while(col < values.length && values[col] == "") ++col;
-    if(col >= values.length) return [null, rowIndex+1];
+    if(col >= values.length) {
+      ++rowIndex;
+      let reaction = null;
+      return {reaction, rowIndex};
+    }
     let reaction = null;
     switch(values[col]){
       case "txt":
@@ -299,9 +346,14 @@ class SToGRoomCSVImporter{
         ++rowIndex;
         break;
       case "if":
-        let r = this.processReactionIf(values, rowIndex, col);
-        reaction = r.reaction;
-        rowIndex = r.rowIndex;
+        let rIf = this.processReactionIf(values, rowIndex, col);
+        reaction = rIf.reaction;
+        rowIndex = rIf.rowIndex;
+        break;
+      case "timer":
+        let rTimer = this.processReactionTimer(values, rowIndex, col);
+        reaction = rTimer.reaction;
+        rowIndex = rTimer.rowIndex;
         break;
       default:
         this.logError("[Error] Unknown command '"+values[col]+"'", rowIndex);

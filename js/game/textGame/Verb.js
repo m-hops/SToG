@@ -7,10 +7,8 @@ class Verb {
   addReaction(reaction) {
     this.reactions.push(reaction);
   }
-  
+
   perform(target){
-    for(let i = 0; i != this.reactions.length; ++i){
-      if(!this.reactions[i].perform(target)) return;
-    }
+    performReactions(this.reactions, target);
   }
 }

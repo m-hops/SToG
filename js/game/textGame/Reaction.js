@@ -55,6 +55,8 @@ function loadReactionFromJSON(data, loader){
       return new ReactionSet(data.var, data.value);
     case 'if':
       return loadReactionIfFromJSON(data, loader);
+    case 'timer':
+      return loadReactionTimerFromJSON(data, loader);
     case 'sfx':
       return new ReactionSFX(loader.loadSFX(data.sfx));
     case 'startmusic':
@@ -65,4 +67,10 @@ function loadReactionFromJSON(data, loader){
       return new ReactionStopMusic();
   }
   return new ReactionError("unknown command type '" + data.type + "'");
+}
+
+function performReactions(reactions, target){
+  for(let i = 0; i != reactions.length; ++i){
+    if(!reactions[i].perform(target)) return;
+  }
 }
