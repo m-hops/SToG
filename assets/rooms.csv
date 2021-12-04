@@ -41,3 +41,20 @@ bedroom,assets\images\bedroom\bedroom.png,the room where your bed is,,
 ,d,,,
 ,,ie,,
 ,,,txt,u died
+entrance,assets\images\frontDoor\entrance.png,your front door,,
+,go,,,
+,,outside,,
+,,,txt,you feel like you're not ready yet but
+map,assets\images\map.JPG,layout 2 appartment!,,
+,go,,,
+,,bedroom,,
+,,,goto,bedroom
+,go,,,
+,,kitchen,,
+,,,goto,kitchen-n
+,go,,,
+,,bathroom,,
+,,,goto,bathroom
+,go,,,
+,,outside,,
+,,,txt,YOU CANT GO OUTSIDE(YET)
