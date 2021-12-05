@@ -49,7 +49,7 @@ class SToGTestScene extends Scene {
     this.roomTxtOBJ.addComponent(new Transform());
     this.roomTxtOBJ.getTransform().local.position.x = 256;
     this.roomTxtOBJ.getTransform().local.position.y = 385;
-    this.roomTxtOBJ.getTransform().local.position.z = -2;
+    this.roomTxtOBJ.getTransform().local.position.z = -3;
 
     this.roomTxtCOMP = new TextComponent("", dosFont);
     this.roomTxtCOMP.color = 'rgb(237,241,197)';
@@ -67,6 +67,8 @@ class SToGTestScene extends Scene {
     this.mainOverlay.addComponent(new Transform());
     this.mainOverlay.addComponent(new ImageComponent(mainOverlayIMG));
 
+    this.mainOverlay.getTransform().local.position.z = -2;
+
     this.addGameObject(this.mainOverlay);
     //
 
@@ -79,6 +81,7 @@ class SToGTestScene extends Scene {
     // this.textInput.addComponent(new RenderDebugComponent());
     this.textInput.getTransform().local.position.x = 19;
     this.textInput.getTransform().local.position.y = 473;
+    this.textInput.getTransform().local.position.z = -2;
 
     this.desktop.addChild(this.textInput);
     //
