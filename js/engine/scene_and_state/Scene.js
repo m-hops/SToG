@@ -62,6 +62,17 @@ class Scene {
     return go;
   }
 
+  visitAllGameObjects(func){
+    if(!func(this)) return false;
+    for(let i = 0; i < this.gameObjects.active.length; ++i){
+      if(!this.gameObjects.active[i].visitAllGameObjects(func)) return false;
+    }
+    for(let i = 0; i < this.gameObjects.toAdd.length; ++i){
+      if(!this.gameObjects.toAdd[i].visitAllGameObjects(func)) return false;
+    }
+    return true;
+  }
+
   getFirstGameObjectWithComponentType(compType) {
 
     for (let i = 0; i < this.gameObjects.active.length; i++) {

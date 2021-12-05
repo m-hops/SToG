@@ -1,11 +1,11 @@
 //ALLOWS FOR USE OF AFFINETRANSFORM WITH GAMEOBJECT; SEE AFFINETRANSFORM FOR MORE INFORMATION//
-
+// extend RenderComponent instead to get debug render
 class Transform extends Component{
 
   constructor(x=0, y=0, z=0) {
 
     super();
-
+    this.debugInfo = true;
     this.local = new AffineTransform();
     this.world = null;
     this.local.position = createVector(x, y, z);
@@ -25,10 +25,11 @@ class Transform extends Component{
         }
     }
     //CALLED EVERY FRAME WHEN OWNER GAME OBJECT IS UPDATED//
+
+
   }
 
   drawDebugInfo(renderer, region){
-
     push();
     let v0 = this.world.transformVector(createVector(0,0,0));
     //let vRight = trf.world.transformVector(createVector(100,0,0));

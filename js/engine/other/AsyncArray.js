@@ -137,9 +137,9 @@ class AsyncArray {
 
       //PUSHES REQUIRED OBJECTS INTO TO ADD ARRAY//
       for (let i = 0; i < this.toAdd.length; i++) {
-        this.active.push(this.toAdd[i]);
-
-        this.toAdd[i].start();
+        let item = this.toAdd[i];
+        this.active.push(item);
+        item.start();
       }
 
       this.toAdd = [];

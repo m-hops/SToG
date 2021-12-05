@@ -4,6 +4,7 @@ class Renderer {
 
   constructor(){
     this.currentTransform = AffineTransform.identity();
+    this.debugRender = false;
   }
   render(scene) {
 
@@ -39,6 +40,7 @@ class Renderer {
     push();
     cameraGo.getTransform().world.applyInverse();
 
+    this.currentTransform = AffineTransform.identity();
     //RENDER ALL COMPONENTS IN ORDER//
     for (let h = 0; h < compToRender.length; h++) {
       let prevTrf = this.currentTransform;
@@ -55,9 +57,28 @@ class Renderer {
       pop();
       this.currentTransform = prevTrf;
     }
+    if(this.debugRender){
+      this.currentTransform = AffineTransform.identity();
+      //RENDER ALL COMPONENTS IN ORDER//
+      for (let h = 0; h < compToRender.length; h++) {
+        let prevTrf = this.currentTransform;
+        push();
+        let trf = compToRender[h].gameObject.getTransform();
+        if(trf != null){
+          this.currentTransform = trf.world;
+          trf.world.apply();
+        } else {
+          this.currentTransform = AffineTransform.identity();
+          resetMatrix();
+        }
+        let drawRegion=AABB.MakeTopLeftSize(0,0,600,600);
+        compToRender[h].drawDebugInfo(this, drawRegion);
+        pop();
+        this.currentTransform = prevTrf;
+      }
+    }
     pop();
   }
-
   static sortGameObjectArray(objs) {
     objs.sort(function(a, b){
       let trfA = a.getTransform();

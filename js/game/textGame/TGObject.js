@@ -24,7 +24,9 @@ class TGObject {
 function loadObjectFromJSON(data, loader){
   let obj = new TGObject(data.name);
   obj.img = loader.loadImage(data.img);
-  obj.position = data.position;
+  obj.position.x = parseFloat(data.position.x);
+  obj.position.y = parseFloat(data.position.y);
+  obj.position.z = parseFloat(data.position.z);
   for(let i = 0; i != data.conditions.length; ++i){
     let c = loadConditionFromJSON(data.conditions[i], loader);
     obj.addCondition(c);

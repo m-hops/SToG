@@ -3,11 +3,11 @@ class SToGTestScene extends Scene {
   constructor() {
     super();
 
+    this.roomObjects = [];
     this.cameraOBJ();
     this.createUI();
     this.createNewGame();
     this.setRoom(this.gameScript.startRoom);
-
   }
 
   createNewGame() {
@@ -135,6 +135,8 @@ class SToGTestScene extends Scene {
       }
       if(!foundSomething){
         this.setText("what?");
+      } else {
+        this.updateRoomObjects();
       }
 
     }
@@ -149,9 +151,48 @@ class SToGTestScene extends Scene {
     this.gameState.setCurrentRoom(room);
     this.roomImgCOMP.image = room.img;
     this.roomTxtCOMP.text = room.txt;
-
+    this.updateRoomObjects();
 
   }
+  updateRoomObjects(){
+    let room = this.gameState.currentRoom;
+    for(let i =0; i != this.roomObjects.length; ++i){
+        this.removeGameObject(this.roomObjects[i]);
+    }
+    this.roomObjects = [];
+    for(let i =0; i != room.objects.length; ++i){
+      let go = this.createRoomObject(room.objects[i]);
+      if(go != null){
+        console.log("Adding object: " + go.name);
+        this.roomObjects.push(go);
+        this.addGameObject(go);
+      }
+    }
+  }
+
+  createRoomObject(roomObject){
+    if(roomObject.isEnabled(this.gameState)){
+      let go = new GameObject(roomObject.name);
+      let trf = new Transform();
+      trf.local.setPosition(roomObject.position.x, roomObject.position.y, roomObject.position.z);
+      go.addComponent(trf);
+      if(roomObject.img != "" && roomObject.img != null){
+        let compImg = new ImageComponent(roomObject.img);
+        go.addComponent(compImg);
+      }
+      for(let i =0; i != roomObject.objs.length; ++i){
+        let child = this.createRoomObject(roomObject.objs[i]);
+        if(child != null){
+          go.addChild(child);
+        }
+      }
+      return go;
+    } else {
+        console.log("Desabled object: " + roomObject.name);
+    }
+    return null;
+  }
+
   setText(txt){
       this.roomTxtCOMP.text = txt;
   }
