@@ -94,16 +94,35 @@ class SToGTestScene extends Scene {
 
     let subject = this.gameState.currentRoom.getSubjectByName(name);
     if (subject != null) {
-      console.log("subject = " + subject.name);
 
       for (let h = 0; h < words.length; h++) {
         let verb = subject.getVerb(words[h]);
         if (verb != null) {
-          console.log("verb = " + verb.name);
+
+          console.log(
+            "Found:\n" +
+            "subject = " + subject.names + "\n" +
+            "verb = " + verb.names + "\n"
+          );
           verb.perform(this);
           return true;
         }
       }
+    }
+    return false;
+  }
+
+  TryVerb(name, words){
+    let verb = this.gameState.currentRoom.getVerbByName(name);
+      console.log(verb);
+    if (verb != null) {
+
+      console.log(
+        "Found:\n" +
+        "verb = " + verb.names + "\n"
+      );
+      verb.perform(this);
+      return true;
     }
     return false;
   }
@@ -127,13 +146,22 @@ class SToGTestScene extends Scene {
     }else {
       let words = txt.split(" ");
 
-      console.log(words);
 
       let foundSomething = false;
+      // try subjects
       for (let i = 0; i < words.length; i++) {
         if(this.TrySubject(words[i], words)){
           foundSomething = true;
           break;
+        }
+      }
+      // try standalone verbs
+      if(!foundSomething){
+        for (let i = 0; i < words.length; i++) {
+          if(this.TryVerb(words[i], words)){
+            foundSomething = true;
+            break;
+          }
         }
       }
       if(!foundSomething){

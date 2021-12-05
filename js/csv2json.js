@@ -163,7 +163,7 @@ class SToGRoomCSVImporter{
     if(this.rows[rowIndex].length > colRoom && this.rows[rowIndex][colRoom] != "") return this.processRowRoom(this.rows[rowIndex], rowIndex);
     if(this.rows[rowIndex].length > colItem && this.rows[rowIndex][colItem] != "") return this.processRowItem(this.rows[rowIndex], rowIndex);
     if(this.rows[rowIndex].length > colSubject && this.rows[rowIndex][colSubject] != "") return this.processRowSubject(this.rows[rowIndex], rowIndex);
-    if(this.rows[rowIndex].length > colVerb && this.rows[rowIndex][colVerb] != "") return this.processRowVerb(this.rows[rowIndex], rowIndex);
+    if(this.rows[rowIndex].length > colVerb && this.rows[rowIndex][colVerb] != "") return this.processRowVerb(this.rows[rowIndex], rowIndex, colVerb, this.currentSubject);
     if(this.rows[rowIndex].length > colReaction) return this.processRowReaction(this.rows[rowIndex], rowIndex, 3);
     this.logInfo("Row " + (rowIndex+1) + " ignored: " + this.lines[rowIndex]);
     return rowIndex+1;
@@ -184,6 +184,9 @@ class SToGRoomCSVImporter{
       case "subject":
       case "":
         return this.processRowSubject(values, rowIndex);
+      case "verb":
+        this.currentSubject = null;
+        return this.processRowVerb(values, rowIndex, colItem+1, this.currentRoom);
       case "obj":
         return this.processRowObject(rowIndex, colItem);
     }
@@ -263,19 +266,21 @@ class SToGRoomCSVImporter{
     return rowIndex+1;
   }
 
-  processRowVerb(values, rowIndex){
-    let verb = new Verb(values[colVerb]);
-    let col = colVerb;
+  processRowVerb(values, rowIndex, col, owner){
+    let verb = new Verb();
     while(col < values.length && values[col] != ""){
       verb.addName(values[col]);
       ++col;
     }
     this.logInfo("Creating new verb names:" + JSON.stringify(verb.names));
-    if(this.currentSubject != null) {
-      this.currentSubject.verbs.push(verb);
+    if(owner == null){
+      owner = this.currentSubject;
+    }
+    if(owner != null) {
+      owner.verbs.push(verb);
       this.currentVerb = verb;
     } else
-      this.logError("No subject declared while parsing verb.", rowIndex);
+      this.logError("No subject or room owner declared while parsing verb.", rowIndex);
     return rowIndex+1;
   }
 
