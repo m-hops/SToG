@@ -191,10 +191,21 @@ class SToGRoomCSVImporter{
     return rowIndex+1;
   }
 
-  processRowObject(rowIndex, col){
+  processRowObject(rowIndex, col, parentObj = null){
     this.logInfo("Begin Object", rowIndex);
     let curRow = rowIndex;
     let objName = this.rows[curRow][col+1];
+    let obj = new TGObject(objName);
+
+    if(parentObj != null){
+      parentObj.addChild(obj);
+    } else {
+      if(this.currentRoom != null) {
+        this.currentRoom.addObject(obj);
+      } else
+        this.logError("No room declared while parsing obj.", rowIndex);
+    }
+    ++curRow;
     while(curRow < this.rows.length){
       switch(this.rows[curRow][col].toLowerCase()){
         case "endobj":
@@ -202,19 +213,37 @@ class SToGRoomCSVImporter{
           this.logInfo("End Object", rowIndex);
           return curRow + 1;
         default:
-          curRow = this.processObjectScope(curRow, col);
+          curRow = this.processObjectScope(obj, curRow, col+1);
           break;
       }
     }
+
     return curRow;
   }
 
-  processObjectScope(rowIndex, col){
+  processObjectScope(obj, rowIndex, col){
     let curRow = rowIndex;
     switch(this.rows[curRow][col].toLowerCase()){
-      default:
-        return curRow + 1;
+      case "img":
+        obj.img = this.rows[curRow][col+1]
+        break;
+      case "condition":
+        let c = this.processCondition(curRow, col+1);
+        curRow = c.rowIndex;
+        obj.addCondition(c.condition);
+        break;
+      case "position":
+        let pos = {
+          x:this.valueOr(this.rows[curRow],col+1, 0),
+          y:this.valueOr(this.rows[curRow],col+2, 0),
+          z:this.valueOr(this.rows[curRow],col+3, 0)
+        };
+        obj.position = pos;
+        break;
+      case "obj":
+        return this.processRowObject(rowIndex, col, obj);
     }
+    return curRow + 1;
   }
 
   processRowSubject(values, rowIndex){

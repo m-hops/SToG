@@ -7,12 +7,16 @@ class Room {
       this.img = img;
       this.txt = txt;
       this.subjects = [];
+      this.objects = [];
   }
 
   addSubject(subject) {
     this.subjects.push(subject);
   }
 
+  addObject(obj) {
+    this.objects.push(obj);
+  }
   getSubjectByName(subjectName) {
     for (let i = 0; i < this.subjects.length; i++) {
       if (this.subjects[i].name == subjectName) {
