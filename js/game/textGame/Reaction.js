@@ -44,7 +44,7 @@ class ReactionError extends Reaction{
 function loadReactionFromJSON(data, loader){
   switch(data.type.toLowerCase()){
     case 'txt':
-      return new ReactionTxt(data.txt);
+      return new ReactionTxt(loader.loadText(data.txt));
     case 'img':
       return new ReactionImg(loader.loadImage(data.img));
     case 'goto':

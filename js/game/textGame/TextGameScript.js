@@ -29,8 +29,8 @@ class TextGameScript {
     for(let iRoom = 0; iRoom != data.length; ++iRoom){
       var room = new Room();
       room.name = data[iRoom].name.toLowerCase();
-      room.img = loadImage(data[iRoom].img);
-      room.txt = data[iRoom].txt;
+      room.img = this.loadImage(data[iRoom].img);
+      room.txt = this.loadText(data[iRoom].txt);
       this.addRoom(room);
       console.log('loading room:"' + room.name + '"');
       for(let i = 0; i != data[iRoom].subjects.length; ++i){
@@ -97,5 +97,8 @@ class TextGameScript {
       console.log("'sfx' must be set to the sfx file");
     }
     return loadSound(sfx);
+  }
+  loadText(txt){
+    return txt.replace("\\n", "\n");
   }
 }

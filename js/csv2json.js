@@ -130,7 +130,7 @@ class SToGRoomCSVImporter{
     }
     if(escaped){
       //end of string
-      this.pushSubstr(output, parsedString, str, dataStart, c - dataStart);
+      this.pushSubstr(output, parsedString, str, dataStart, c - dataStart-1);
     }
     return c+1;
   }
