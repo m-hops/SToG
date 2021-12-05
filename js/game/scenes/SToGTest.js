@@ -67,6 +67,8 @@ class SToGTestScene extends Scene {
     this.mainOverlay.addComponent(new Transform());
     this.mainOverlay.addComponent(new ImageComponent(mainOverlayIMG));
 
+    this.mainOverlay.getTransform().local.position.z = -2;
+
     this.addGameObject(this.mainOverlay);
     //
 
