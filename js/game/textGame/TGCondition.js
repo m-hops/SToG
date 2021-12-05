@@ -26,3 +26,6 @@ class TGCondition {
       return indent + "("+this.lhs+" "+this.op+" "+this.rhs+")";
   }
 }
+function loadConditionFromJSON(data, loader){
+  return new TGCondition(data.lhs, data.op, data.rhs);
+}

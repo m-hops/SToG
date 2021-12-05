@@ -20,3 +20,18 @@ class TGObject {
   }
 
 }
+
+function loadObjectFromJSON(data, loader){
+  let obj = new TGObject(data.name);
+  obj.img = loader.loadImage(data.img);
+  obj.position = data.position;
+  for(let i = 0; i != data.conditions.length; ++i){
+    let c = loadConditionFromJSON(data.conditions[i], loader);
+    obj.addCondition(c);
+  }
+  for(let i = 0; i != data.objs.length; ++i){
+    let child = loadObjectFromJSON(data.objs[i], loader);
+    obj.addChild(child);
+  }
+  return obj;
+}

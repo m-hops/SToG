@@ -36,6 +36,10 @@ class TextGameScript {
       for(let i = 0; i != data[iRoom].subjects.length; ++i){
         room.addSubject(this.loadJSONSubject(data[iRoom].subjects[i]));
       }
+      for(let i = 0; i != data[iRoom].objects.length; ++i){
+        room.addObject(loadObjectFromJSON(data[iRoom].objects[i], this));
+      }
+
       console.log(data[iRoom]);
     }
     for(let i = 0; i != this.roomRefToFix.length; ++i){

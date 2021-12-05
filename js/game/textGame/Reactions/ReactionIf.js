@@ -47,7 +47,7 @@ class ReactionIf extends Reaction{
 }
 
 function loadReactionIfFromJSON(data, loader){
-  let r = new ReactionIf(new TGCondition(data.condition.lhs, data.condition.op, data.condition.rhs));
+  let r = new ReactionIf(loadConditionFromJSON(data.condition, loader));
   if(data.then != null){
     r.then = [];
     for(let i = 0; i != data.then.length; ++i){
