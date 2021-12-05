@@ -53,6 +53,8 @@ function loadReactionFromJSON(data, loader){
       return g;
     case 'set':
       return new ReactionSet(data.var, data.value);
+    case 'add':
+      return new ReactionAdd(data.var, data.value);
     case 'if':
       return loadReactionIfFromJSON(data, loader);
     case 'timer':

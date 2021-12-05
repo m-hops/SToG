@@ -21,7 +21,7 @@ class SToGRoomCSVImporter{
 
   logInfo(str, rowIndex){
     if(rowIndex !== undefined){
-      console.log("ERROR:["+ (rowIndex+1) + "] " + str);
+      console.log("INFO:["+ (rowIndex+1) + "] " + str);
     } else {
       console.log(str);
     }
@@ -427,6 +427,11 @@ class SToGRoomCSVImporter{
       case "set":
         reaction = new ReactionSet(this.valueOrNull(values,col+1), this.valueOrNull(values,col+2));
         this.logInfo("Creating ReactionSet(\"" + reaction.var + "\", \"" + reaction.value + "\")");
+        ++rowIndex;
+        break;
+      case "add":
+        reaction = new ReactionAdd(this.valueOrNull(values,col+1), this.valueOrNull(values,col+2));
+        this.logInfo("Creating " + reaction.print(""));
         ++rowIndex;
         break;
       case "goto":

@@ -2,7 +2,11 @@ class TGCondition {
   constructor(lhs, op, rhs) {
     this.lhs = lhs;
     this.op = op;
-    this.rhs = rhs;
+    if(isNaN(this.rhs)){
+      this.rhs = rhs;
+    } else {
+      this.rhs = parseFloat(rhs);
+    }
   }
 
   execute(gameState){
