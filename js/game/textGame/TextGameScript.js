@@ -53,7 +53,9 @@ class TextGameScript {
 
   loadJSONSubject(data){
     var subject = new Subject();
-    subject.name = data.name.toLowerCase();
+    for(let i = 0; i != data.names.length; ++i){
+        subject.names.push(data.names[i].toLowerCase());
+    }
     for(let i = 0; i != data.verbs.length; ++i){
       subject.addVerb(this.loadJSONVerb(data.verbs[i]));
     }
@@ -62,7 +64,9 @@ class TextGameScript {
 
   loadJSONVerb(data){
     var verb = new Verb();
-    verb.name = data.name.toLowerCase();
+    for(let i = 0; i != data.names.length; ++i){
+        verb.names.push(data.names[i].toLowerCase());
+    }
     for(let i = 0; i != data.reactions.length; ++i){
       verb.addReaction(this.loadJSONReaction(data.reactions[i]));
     }

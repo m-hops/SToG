@@ -19,7 +19,7 @@ class Room {
   }
   getSubjectByName(subjectName) {
     for (let i = 0; i < this.subjects.length; i++) {
-      if (this.subjects[i].name == subjectName) {
+      if (this.subjects[i].hasName(subjectName)) {
         return this.subjects[i];
       }
     }

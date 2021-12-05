@@ -247,8 +247,13 @@ class SToGRoomCSVImporter{
   }
 
   processRowSubject(values, rowIndex){
-    let subject = new Subject(values[colSubject]);
-    this.logInfo("Creating new subject name:" + subject.name);
+    let subject = new Subject();
+    let col = colSubject;
+    while(col < values.length && values[col] != ""){
+      subject.addName(values[col]);
+      ++col;
+    }
+    this.logInfo("Creating new subject names:" + JSON.stringify(subject.names));
     if(this.currentRoom != null) {
       this.currentRoom.subjects.push(subject);
       this.currentSubject = subject;
@@ -260,7 +265,12 @@ class SToGRoomCSVImporter{
 
   processRowVerb(values, rowIndex){
     let verb = new Verb(values[colVerb]);
-    this.logInfo("Creating new verb name:" + verb.name);
+    let col = colVerb;
+    while(col < values.length && values[col] != ""){
+      verb.addName(values[col]);
+      ++col;
+    }
+    this.logInfo("Creating new verb names:" + JSON.stringify(verb.names));
     if(this.currentSubject != null) {
       this.currentSubject.verbs.push(verb);
       this.currentVerb = verb;
