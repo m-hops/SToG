@@ -38,6 +38,9 @@ $(function() {
          }
     });
 
+    readText();
+    displayWallText();
+
   });
 
 });

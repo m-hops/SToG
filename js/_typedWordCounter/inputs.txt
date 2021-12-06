@@ -3,3 +3,15 @@ dsadf
 dsags
 gfdg
 start game
+read text
+start again
+display
+test test
+read text
+boop
+beep beep boop boop
+enter something
+else
+more
+dsfdsfdsf
+start game
