@@ -20,11 +20,11 @@ class SToGRoomCSVImporter{
   }
 
   logInfo(str, rowIndex){
-    if(rowIndex !== undefined){
-      console.log("INFO:["+ (rowIndex+1) + "] " + str);
-    } else {
-      console.log(str);
-    }
+    // if(rowIndex !== undefined){
+    //   console.log("INFO:["+ (rowIndex+1) + "] " + str);
+    // } else {
+    //   console.log("INFO: " + str);
+    // }
   }
 
   logError(str, rowIndex){
