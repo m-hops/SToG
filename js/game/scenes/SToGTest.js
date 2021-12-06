@@ -166,11 +166,18 @@ class SToGTestScene extends Scene {
       let roomMap = this.gameScript.getRoom("map");
       if(roomMap != null){
         this.setRoom(roomMap);
-      }
+    }
       else {
         console.log("Error, map room not found");
       }
-    }else {
+    }else if (txt == 'item'||txt == 'inventory'||txt=='items') {
+      let inventory = this.gameScript.getRoom("inventory");
+      if(inventory != null){
+        this.setRoom(inventory);
+      }else{
+        console.log("Error, inventory room not found");
+      }
+      }else {
       let words = txt.split(" ");
 
       this.displayTextQueue = null;
