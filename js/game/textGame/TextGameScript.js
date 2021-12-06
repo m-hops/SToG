@@ -106,6 +106,14 @@ class TextGameScript {
     return loadSound(sfx);
   }
   loadText(txt){
-    return txt.replace("\\n", "\n");
+    if(Array.isArray(txt)){
+      let txt2 = [];
+      for(let i = 0; i != txt.length; ++i){
+        txt2.push(txt[i].replace("\\n", "\n"));
+      }
+      return txt2;
+    } else {
+      return txt.replace("\\n", "\n");
+    }
   }
 }

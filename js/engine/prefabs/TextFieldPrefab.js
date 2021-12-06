@@ -5,7 +5,7 @@ class TextFieldPrefab extends GameObject {
     super();
 
     this.value = "";
-
+    this.inputEnabled = true;
     this.addComponent(new Transform());
     this.inputRec = new WindowInputReceiverComponent();
     this.addComponent(this.inputRec);
@@ -30,6 +30,10 @@ class TextFieldPrefab extends GameObject {
       this.textField.text = txt;
   }
 
+  addKeyPressListener(listener){
+    this.inputRec.onKeyPressEvent.addListener(listener);
+  }
+
   onKeyPress(event, key) {
 //console.log("textField " + key);
     if (key == 8) {
@@ -47,13 +51,15 @@ class TextFieldPrefab extends GameObject {
     if (key == "Enter") {
       return;
     }
+    if(this.inputEnabled){
+      if (this.value.length >= this.maxChar) {
+        return;
+      }
 
-    if (this.value.length >= this.maxChar) {
-      return;
+      this.value = this.value + key;
+
+      this.textField.text = this.value;
     }
-    this.value = this.value + key;
-
-    this.textField.text = this.value;
 
     // console.log("text field " + keyCode);
   }

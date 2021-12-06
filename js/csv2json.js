@@ -410,7 +410,17 @@ class SToGRoomCSVImporter{
     let reaction = null;
     switch(values[col]){
       case "txt":
-        reaction = new ReactionTxt(this.valueOrNull(values,col+1));
+        ++col;
+        let txts = [];
+        while(col < values.length && values[col] != ""){
+          txts.push(values[col]);
+          ++col;
+        }
+        if(txts.length == 1){
+          reaction = new ReactionTxt(txts[0]);
+        } else{
+          reaction = new ReactionTxt(txts);
+        }
         this.logInfo("Creating ReactionTxt(\"" + reaction.txt + "\")");
         ++rowIndex;
         break;

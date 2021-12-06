@@ -8,6 +8,9 @@ class SToGTestScene extends Scene {
     this.createUI();
     this.createNewGame();
     this.setRoom(this.gameScript.startRoom);
+    this.displayTextQueue = [];
+    this.currentDisplayTextIndex = 0;
+    this.inputState = 'cmd';
   }
 
   createNewGame() {
@@ -74,7 +77,6 @@ class SToGTestScene extends Scene {
 
     //USER TEXT INPUT FIELD//
     this.textInput = new TextFieldPrefab(new CallbackAction2 (this, this.onKeyboardEnter));
-
     this.textInput.textField.color = 'rgb(237,241,197)';
     this.textInput.textField.font = dosFont;
     this.textInput.addComponent(new RectColliderComponent(AABB.MakeSize(475, 25)));
@@ -127,9 +129,34 @@ class SToGTestScene extends Scene {
     return false;
   }
 
-  onKeyboardEnter() {
-    let txt = this.textInput.value.toLowerCase();
+  checkMessageQueue(){
+    if(this.displayTextQueue != null){
+      this.setUIText(this.displayTextQueue[0]);
+      if(this.displayTextQueue.length > 1){
+        // enter display text sequence state;
+        this.textInput.inputEnabled = false;
+        this.inputState = 'msg';
+        this.currentDisplayTextIndex = 0;
+      }
+    }
+  }
+  stepMessageQueue(){
+    ++this.currentDisplayTextIndex;
+    this.setUIText(this.displayTextQueue[this.currentDisplayTextIndex]);
+    if(this.currentDisplayTextIndex >= this.displayTextQueue.length - 1){
+      // last msg;
+      this.enterCommandState();
+    }
+  }
+  enterCommandState(){
+    this.inputState = 'cmd';
+    this.textInput.inputEnabled = true;
+  }
+
+  processInputCommand(txt){
+
     if(txt == '' || txt == "return"){
+
       this.setText(this.gameState.currentRoom.txt);
       this.setImage(this.gameState.currentRoom.img);
     } else if (txt == 'help') {
@@ -146,6 +173,7 @@ class SToGTestScene extends Scene {
     }else {
       let words = txt.split(" ");
 
+      this.displayTextQueue = null;
 
       let foundSomething = false;
       // try subjects
@@ -165,16 +193,28 @@ class SToGTestScene extends Scene {
         }
       }
       if(!foundSomething){
-        this.setText("what?");
+        this.setUIText("what?");
       } else {
         this.updateRoomObjects();
+        this.checkMessageQueue();
       }
 
     }
 
     this.textInput.setText("");
-
-
+  }
+  onKeyboardEnter() {
+    switch(this.inputState)
+    {
+      case 'cmd':
+        // entering command
+        this.processInputCommand(this.textInput.value.toLowerCase());
+        break;
+      case 'msg':
+        // flips through a sequence of display messages
+        this.stepMessageQueue();
+        break;
+    }
   }
 
   setRoom(room) {
@@ -224,8 +264,20 @@ class SToGTestScene extends Scene {
     return null;
   }
 
+  setUIText(txt){
+    this.roomTxtCOMP.text = txt;
+  }
   setText(txt){
-      this.roomTxtCOMP.text = txt;
+    if(this.displayTextQueue == null){
+      this.displayTextQueue = [];
+    }
+    if(Array.isArray(txt)){
+      this.displayTextQueue = this.displayTextQueue.concat(txt);
+    } else {
+      this.displayTextQueue.push(txt);
+    }
+
+    //this.roomTxtCOMP.text = txt;
   }
   setImage(img){
       this.roomImgCOMP.image = img;
