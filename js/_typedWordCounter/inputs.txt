@@ -48,3 +48,27 @@ move closet
 punch wall
 data
 data
+start
+map
+go to the bedroom
+start
+open door
+start
+open door
+start
+open door
+start
+enter door
+open door
+open door
+open door
+leave room
+use door
+open door
+turn around
+turn around
+leave
+map
+bedroom
+go to bedroom
+open door
