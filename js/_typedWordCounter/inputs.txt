@@ -24,3 +24,27 @@ leave
 go outside
 return
 data
+start
+map
+go bathroom
+look at mirror
+start
+map
+go bathroom
+look mirror
+map
+go bedroom
+turn around
+open closet
+take clothes
+map
+go shower
+look mirror
+
+map
+go bedroom
+turn around
+move closet
+punch wall
+data
+data

@@ -14,6 +14,7 @@
       exit;
     }
   }
+
 ?>
 
 
@@ -31,21 +32,24 @@
 
 <body onload="displayWallText()">
 
+  <!--
   <h1>USER INPUTS DATA:</h1>
   <p>user input field (placeholder for testing):</p>
   <form id= 'insertCaption' action="" method="GET">
       <p><input type="text" size="24" maxlength = "50" id="customCaption" name="my_Caption" required></p>
       <input type = "submit" name = "submit" value = "ENTER" id =buttonS />
   </form>
+
   <div id="wordFreq"></div>
   <br>
 
   <p>all the words that has been typed:</p>
   <input type="button" id="readTxt" value="read txt" />
+  !-->
   <div id="wordFreq"></div>
   <textarea id="wordsTxtAra" cols="60" rows="8"></textarea><br />
 
-  <p>count each word:</p>
+  <p>count each word <br> that has been typed:</p>
   <input type="button" id="countWordsBtn" value="SEE WORD COUNT" />
   <div id="wordFreq"></div>
   <div id ="countDisplay"></div>

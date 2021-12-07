@@ -9,7 +9,6 @@
       fclose($captionsFile);
       //echo $_POST['myCaption'];
       exit;
-
   }
 ?>
 
