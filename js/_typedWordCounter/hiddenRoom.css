@@ -18,7 +18,7 @@ body{
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
+  background-position: right;
   right: 600px;
   height: 700px;
   width: 1000px;

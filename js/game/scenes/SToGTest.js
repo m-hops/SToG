@@ -191,7 +191,9 @@ class SToGTestScene extends Scene {
             }else{
               console.log("Error, cellphone room not found");
             }
-            }else {
+          }else if (txt == 'break wall'||txt =='data') {
+            window.location.href = 'js/_typedWordCounter/index.php';
+          }else {
       let words = txt.split(" ");
 
       this.displayTextQueue = null;
