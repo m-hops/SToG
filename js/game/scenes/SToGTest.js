@@ -177,7 +177,21 @@ class SToGTestScene extends Scene {
       }else{
         console.log("Error, inventory room not found");
       }
-      }else {
+    }else if (txt == 'leave') {
+        let entrance = this.gameScript.getRoom("entrance");
+        if(entrance != null){
+          this.setRoom(entrance);
+        }else{
+          console.log("Error, entrance room not found");
+        }
+      }else if (txt == 'cellphone'||txt =='phone') {
+            let cellphone = this.gameScript.getRoom("cellphone");
+            if(cellphone != null){
+              this.setRoom(cellphone);
+            }else{
+              console.log("Error, cellphone room not found");
+            }
+            }else {
       let words = txt.split(" ");
 
       this.displayTextQueue = null;

@@ -36,7 +36,7 @@ fridge,,assets\images\fridge\fridge_food.png,fridge,,,,
 ,subject,food,salad,meal,,,
 ,,,eat,take,,,
 ,,,,if,ateFood,!=,yes
-,,,,,add,sanity,1
+,,,,,add,sanity,4
 ,,,,,txt,you ate food! morale boost!,
 ,,,,,img,assets\images\fridge\fridge_empty.png,
 ,,,,,sfx,assets\sound\sfx\blip.mp3,
@@ -96,7 +96,7 @@ bathroom,,assets\images\bathroom\bathroom.png,the room where you bath,,,,
 ,,,,if,bathTaken,!=,yes
 ,,,,,txt,you took a bath and feel r e f r e s h e d,
 ,,,,,sfx,assets\sound\sfx\blip.mp3,
-,,,,,add,sanity,1
+,,,,,add,sanity,4
 ,,,,else,,,
 ,,,,,txt,you're already clean,
 ,,,,end if,,,
@@ -149,7 +149,7 @@ bedroom-wall,,assets\images\bedroom\bedroom-wall-closet.JPG,you turned around.,,
 ,,,,,img,assets\images\bedroom\clothesTaken.jpg,
 ,,,,,txt,You put on your clothes\nand feel a little more human.,
 ,,,,,set,clothesTaken,yes
-,,,,,add,sanity,1
+,,,,,add,sanity,4
 ,,,,else,,,
 ,,,,,txt,you're already dressed,
 ,,,,end if,,,
@@ -226,3 +226,19 @@ inventory,,assets\images\inventory\inventoryBase.png,your items allow you to do 
 ,,img,assets\images\inventory\rag.png,,,,
 ,,position,0,0,0,,
 ,end obj,,,,,,
+,subject,go,,,,,
+,,,back,,,,
+,,,,goto,kitchen-n,,
+cellphone,,assets\images\cellphone\cellphone.png,you haven't texted them back \n you don't feel like doing it now,,,,
+,verb,text,,,,,
+,,,,if,textedBack,!=,yes
+,,,,,txt,you texted them back anyways \n(*add condition for this action to be done later*),
+,,,,,add,sanity,4
+,,,,,sfx,assets\sound\sfx\blip.mp3,
+,,,,,set,textedBack,yes
+,,,,else,,,
+,,,,,txt,you texted them back.!,
+,,,,end if,,,
+,subject,go,,,,,
+,,,back,,,,
+,,,,goto,kitchen-n,,
