@@ -1,3 +1,19 @@
+<?php
+
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+      $newCaption = $_POST['txt1'];
+      $captionsFile = fopen("js/_typedWordCounter/inputs.txt","a") or die("Unable to open file!");
+      fwrite($captionsFile, "".$newCaption."\n");
+
+      fclose($captionsFile);
+      //echo $_POST['myCaption'];
+      exit;
+
+  }
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,6 +29,8 @@
     <script src="js/libraries/p5.min.js"></script>
     <script src="js/libraries/p5.sound.min.js"></script>
     <script src="js/libraries/p5.play-master/lib/p5.play.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- ENGINE SCRIPTS -->
       <!-- INITIALIZING SCRIPTS-->

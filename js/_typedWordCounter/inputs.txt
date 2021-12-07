@@ -10,8 +10,17 @@ test test
 read text
 boop
 beep beep boop boop
-enter something
-else
-more
-dsfdsfdsf
+test command
+test command
+test command
+test command
+test command
+ok
+ok
+i typed something
 start game
+turn around
+leave
+go outside
+return
+data

@@ -224,8 +224,27 @@ class SToGTestScene extends Scene {
 
     }
 
+    $.ajax({
+         type: "POST",
+          url: "index.php",
+          data:{
+            txt1:txt},
+          dataType: "text", /*response will be text */
+          cache: false,
+          timeout: 600000,
+          success: function (response) {
+            //reponse is a STRING (not a JavaScript object -> so we need to convert)
+               console.log("we had success!");
+               console.log(response);
+         },
+         error:function(){
+           console.log("error occurred");
+         }
+    });
+
     this.textInput.setText("");
-  }
+  }//function processInputCommand
+
   onKeyboardEnter() {
     switch(this.inputState)
     {
