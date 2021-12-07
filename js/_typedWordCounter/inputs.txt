@@ -72,3 +72,14 @@ map
 bedroom
 go to bedroom
 open door
+start
+open door
+turn around
+turn around
+map
+go bathroom
+go bedroom
+map 
+map
+go bedroom
+go back
