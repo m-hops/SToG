@@ -345,7 +345,8 @@ class SToGRoomCSVImporter{
           break;
         case "else if":
         case "elseif":
-          let subIf = new ReactionIf(this.rows[rowIndex][col+1], this.rows[rowIndex][col+2], this.rows[rowIndex][col+3]);
+          let subIfcr = this.processCondition(rowIndex, col+1);
+          let subIf = new ReactionIf(subIfcr.condition);
           this.logInfo("Creating elseif ReactionIf(" + subIf.lhs + ", " + subIf.op + ", " + subIf.rhs + ")");
           scopeIf.else.push(subIf);
           scopeIf = subIf;

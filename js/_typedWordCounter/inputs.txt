@@ -73,6 +73,7 @@ bedroom
 go to bedroom
 open door
 start
+<<<<<<< Updated upstream
 open door
 turn around
 turn around
@@ -83,3 +84,130 @@ map
 map
 go bedroom
 go back
+=======
+go to fridge
+j
+t
+guess t
+start
+open fridge
+t
+guess t
+guess q
+guess j
+guess u
+guess u
+start
+open fridge
+guess f
+guess f
+guess f
+start
+open fridge
+guess f
+guess f
+guess f
+guess f
+start
+open fridge
+check f
+guess f
+guess f
+guess f
+start
+check fridge
+guess t
+start
+open fridge
+guess t
+guess f
+guess r
+guess a
+start
+open fridge
+guess t
+start
+open fridge
+guess t
+start
+open fridge
+guess t
+start
+open fridge
+guess t
+guess r
+guess y
+start
+open fridge
+guess a
+start
+open fridge
+guess a
+start
+open fridge
+guess a
+start
+open fridge
+guess a
+guess g
+guess i
+guess n
+start
+open fridge
+guess a
+guess g
+start
+open fridge
+guess a
+guess g
+guess i
+guess n
+start
+open fridge
+guess a
+guess g
+guess i
+guess n
+guess t
+guess r
+guess y
+start
+open fridge
+guess t
+guess r
+guess y
+guess a
+guess i
+guess g
+guess n
+start
+
+open fridge
+guess f
+guess f
+guess f
+start
+open fridge
+open fridge
+guess t
+guess r
+guess y
+guess a
+guess g
+guess
+guess i
+guess n
+open fridge
+open fridge
+start
+start
+start
+start
+leave room
+map
+kitchen
+go to the kitchen
+go kitchen
+go bedroom
+start
+>>>>>>> Stashed changes
