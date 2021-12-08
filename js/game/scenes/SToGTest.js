@@ -162,6 +162,9 @@ class SToGTestScene extends Scene {
     } else if (txt == 'help') {
       this.setImage(helpOverlayIMG);
       this.setText("Verbs.\nUse them!");
+    } else if (txt == 'debug') {
+      console.log('gameState');
+      console.log(this.gameState);
     } else if (txt == 'map') {
       let roomMap = this.gameScript.getRoom("map");
       if(roomMap != null){
@@ -216,7 +219,7 @@ class SToGTestScene extends Scene {
         }
       }
       if(!foundSomething){
-        this.setUIText("what?");
+        this.setUIText("You can't do that right now.");
       } else {
         this.updateRoomObjects();
         this.checkMessageQueue();

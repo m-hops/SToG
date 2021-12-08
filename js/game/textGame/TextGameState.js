@@ -48,7 +48,7 @@ class TextGameState extends GameState{
 
     if (this.currentMusic != null) {
 
-      this.currentMusic.setVoume(level);
+      this.currentMusic.setVolume(parseFloat(level));
     }
 
   }

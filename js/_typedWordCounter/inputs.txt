@@ -211,3 +211,632 @@ go kitchen
 go bedroom
 start
 >>>>>>> Stashed changes
+start
+turn around
+turn around
+open door
+map
+bathroom
+go to the bathroom
+start
+turn around
+turn around
+go to sleep
+start
+open door
+open fridge
+open fridge
+open fridge
+
+
+return
+start
+leave room
+turn around
+turn around
+leave room
+open door
+open fridge
+turn around
+open drawer
+turn around
+use cell
+use mail
+
+use text
+
+
+go back
+open door
+use bath
+get in bath
+take bath
+
+use sink
+
+use bong
+
+open door
+go to the hallway
+open door
+turn around
+turn around
+open door
+turn around
+inventory
+go back
+kitchen
+go to the kitchen
+start
+turn around
+open dresser
+open dresser
+open dresser
+turn around
+turn around
+move dresser
+turn around
+leave room
+use fridge
+start
+leave room
+open fridge
+a
+t
+r
+y
+g
+i
+n
+
+open fridge
+turn around
+open drawer
+open door
+open door
+open door
+turn around
+open door
+smoke bong
+open door
+turn around
+start
+turn around
+open dresser
+open dresser
+open dresser
+move dresser
+turn around
+turn around
+move dresser
+turn around
+leave room
+open fridge
+t
+r
+y
+g
+a
+i
+n
+open fridge
+open fridge
+turn around
+turn around
+use cell
+use mail
+
+use text
+
+turn around
+leave
+turn around
+open door
+smoke bong
+
+leave room
+open door
+use cell
+use text
+start
+turn around
+open dresser
+open closet
+
+
+open dresser
+close dresser
+start
+djhf
+turn around
+open dresser
+open dresser
+
+open dresser
+close dresser
+close dresser
+turn around
+turn around
+close dresser
+open dresser
+close dresser
+open dresser
+close dresser
+turn around
+turn around
+move dresser
+turn around
+open door
+open fridge
+d
+s
+a
+v
+turn around
+open drawer
+close drawer
+turn around
+open cell
+put down cell
+go back
+open door
+take bath
+
+smoke bong
+
+check mirror
+check mirror
+look mirror
+use sink
+start
+turn around
+open door
+open dresser
+open dresser
+
+open dresser
+close door
+close dresser
+turn around
+turn around
+move dresser
+turn around
+open door
+open fridge
+h
+t
+r
+s
+y
+a
+g
+i
+n
+open fridge
+turn around
+open fridge
+open fridge
+turn around
+open drawer
+take rag
+
+take rag
+turn around
+turn around
+use cell
+use mail
+
+use text
+
+turn around
+go back
+open door
+take bath
+
+
+check mirror
+smoke bong
+
+
+use sink
+
+use rag
+leave room
+open door
+go to the hallway
+open door
+turn around
+start
+turn around
+open dresser
+turn around
+turn around
+open dresser
+open dresser
+
+open dresser
+close dresser
+close dresser
+close dresser
+turn around
+open door
+open fridge
+open fridge
+y
+r
+g
+a
+t
+i
+n
+open fridge
+
+
+open fridge
+
+turn around
+open drawer
+grab rag
+
+turn around
+turn around
+check cell
+check cell
+use cell
+open text
+
+put down phone
+put down cell
+open door
+take bath
+take bath
+check mirror
+smoke bong
+
+smoke bong
+leave room
+take cell
+use text
+
+click text
+start
+open door
+turn around
+map
+bathroom
+bathroom
+go to the bathroom
+use mirror
+take bong
+
+
+open door
+use cell
+use text
+
+use text
+drop phone
+turn around
+open door
+open door
+turn around
+check fridge
+open fridge
+t
+r
+y
+a
+g
+i
+n
+open fridge
+start
+open door
+open fridge
+t
+r
+y
+a
+g
+a
+i
+n
+open fridge
+start 
+open door
+open fridge
+t
+r
+a
+y
+g
+i
+n
+open fridge
+
+close door
+turn around
+turn around
+open door
+check mirror
+map
+kitchen
+go to kitvhen
+go kitchen
+open drawer
+take rag
+turn around
+turn around
+opend door
+open door
+plug sink
+sink plug
+start
+exit room
+leave room
+turn around
+open door
+check mirror
+
+use sink
+
+open door
+turn around
+open drawer
+take rag
+
+turn around
+turn around
+open door
+use mirror
+use rag
+
+plug sink
+
+leave room
+open door
+leave room
+
+start
+start
+start
+start
+turn around
+open dresser
+open dresser
+
+
+open dresser
+turn around
+open door
+open drawer
+take rag
+
+turn around
+turn around
+open door
+take bath
+smoke bong
+
+check mirror
+plug sink
+
+open door
+check phone
+check cell
+check text
+
+check text
+open text
+
+check text
+
+ues text
+use text
+
+turn around
+turn around
+open fridge
+t
+r
+y
+a
+g
+i
+n
+open fridge
+
+open door
+open fridge
+turn around
+turn around
+go down hallway
+open door
+turn around
+open door
+have bath
+take bath
+start
+turn around
+move dresser
+turn around
+open dresser
+open dresser
+
+debug
+turn around
+open door
+open fridge
+t
+a
+g
+r
+y
+i
+n
+open fridge
+
+turn around
+open drawer
+take rag
+
+turn around
+turn around
+open door
+plug sink
+
+
+smoke bong
+
+take bath
+
+open door
+check cell
+check text
+open text
+
+debug
+
+
+turn around
+start
+turn around
+open dresser
+open dresser
+
+turn around
+open door
+open fridge
+t
+a
+g
+r
+y
+i
+n
+open fridge
+
+turn around
+turn around
+open door
+smoke bong
+
+take bath
+
+open door
+check cell
+check text
+
+debug
+turn around
+go down the hallway
+open door
+start
+turn around
+map
+kitchen
+kitchen
+bedroom
+open door
+turn around
+go down hallway
+open door
+start
+turn around
+open dresser
+open dresser
+
+open dresser
+close door
+move dresser
+turn around
+open door
+open drawer
+take rag
+
+close drawer
+turn around
+check cell
+check mail
+open mail
+
+text
+open text
+
+turn around
+go down hallway
+open door
+start
+open door
+turn around
+open door
+smoke bong
+
+check mirror
+
+take bath
+
+open door
+chck cell
+check cell
+check mail
+
+check text
+
+start
+open door
+open fridge
+t
+r
+y
+a
+g
+a
+i
+n
+open fridge
+
+open fridge
+
+close door
+turn around
+open drawer
+take rag
+
+close drawer
+turn around
+check cell
+check text
+
+open mail
+put cell down
+open door
+take bath
+use sink
+
+smoke bong
+
+plug sink
+open door
+check cell
+check text
+
+put down phone
+enter hallway
+check door
+debug
+turn around
+turn around
+open door
+turn around
+open dresser
+open dresser
+
+open dresser
+close door
+move dresser
+turn around
+open door
+turn around
+enter hallway
+open door

@@ -62,7 +62,7 @@ function loadReactionFromJSON(data, loader){
     case 'sfx':
       return new ReactionSFX(loader.loadSFX(data.sfx));
     case 'startmusic':
-      return new ReactionStartMusic(data.music, loader.loadSFX(data.music));
+      return new ReactionStartMusic(data.name, loader.loadSFX(data.name));
     case 'musicvolume':
       return new ReactionMusicVolume(data.level);
     case 'stopmusic':
